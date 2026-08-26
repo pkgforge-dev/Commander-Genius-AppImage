@@ -15,9 +15,6 @@ echo "Installing debloated packages..."
 echo "---------------------------------------------------------------"
 get-debloated-pkgs --add-common --prefer-nano libdecor-mini sdl2_image-mini
 
-# Comment this out if you need an AUR package
-#make-aur-package commander-genius-git
-
 echo "Building Commander-Genius..."
 echo "---------------------------------------------------------------"
 REPO="https://gitlab.com/Dringgstein/Commander-Genius"

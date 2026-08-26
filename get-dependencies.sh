@@ -32,5 +32,5 @@ cmake -S ./ -B build \
     -DBUILD_COSMOS=YES \
     -DUSE_BOOST=NO
 
-cmake --build build
+cmake --build build -j$(nproc)
 mv -v build/CGeniusExe ../AppDir/bin

@@ -6,21 +6,31 @@ ARCH=$(uname -m)
 
 echo "Installing package dependencies..."
 echo "---------------------------------------------------------------"
-#pacman -Syu --noconfirm
+pacman -Syu --noconfirm \
+    cmake      \
+    sdl2_mixer \
+    sdl2_ttf
 
 echo "Installing debloated packages..."
 echo "---------------------------------------------------------------"
 get-debloated-pkgs --add-common --prefer-nano libdecor-mini sdl2_image-mini
 
 # Comment this out if you need an AUR package
-make-aur-package commander-genius-git
+#make-aur-package commander-genius-git
 
-# If the application needs to be manually built that has to be done down here
+echo "Building NBlood..."
+echo "---------------------------------------------------------------"
+REPO="https://gitlab.com/Dringgstein/Commander-Genius"
+VERSION="$(git ls-remote "$REPO" HEAD | cut -c 1-9 | head -1)"
+git clone --recursive --depth 1 "$REPO" ./CommanderGenius
+echo "$VERSION" > ~/version
 
-# if you also have to make nightly releases check for DEVEL_RELEASE = 1
-#
-# if [ "${DEVEL_RELEASE-}" = 1 ]; then
-# 	nightly build steps
-# else
-# 	regular build steps
-# fi
+mkdir -p ./AppDir/bin
+cd ./CommanderGenius
+cmake -S ./ -B build \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DBUILD_COSMOS=YES \
+    -DUSE_BOOST=NO
+
+cmake --build build
+mv -v build/CGeniusExe ../AppDir/bin

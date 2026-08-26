@@ -33,4 +33,4 @@ cmake -S ./ -B build \
     -DUSE_BOOST=NO
 
 cmake --build build -j$(nproc)
-mv -v build/CGeniusExe ../AppDir/bin
+mv -v build/src/CGeniusExe ../AppDir/bin

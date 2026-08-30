@@ -10,7 +10,7 @@ export UPINFO="gh-releases-zsync|${GITHUB_REPOSITORY%/*}|${GITHUB_REPOSITORY#*/}
 export ICON=https://gitlab.com/Dringgstein/Commander-Genius/-/raw/master/share/cg.svg?ref_type=heads
 export DESKTOP=https://gitlab.com/Dringgstein/Commander-Genius/-/raw/master/share/cgenius.desktop?ref_type=heads
 export STARTUPWMCLASS=CGeniusExe
-export USE_HOST_DRIVERS_EXPERIMENTAL=1
+export DEPLOY_OPENGL=1
 
 # Deploy dependencies
 quick-sharun ./AppDir/bin/CGeniusExe

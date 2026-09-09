@@ -24,7 +24,7 @@ echo "$VERSION" > ~/version
 
 mkdir -p ./AppDir/bin
 cd ./CommanderGenius
-cmake -S ./ -B build \
+cmake ./ -B build \
     -DCMAKE_BUILD_TYPE=Release \
     -DBUILD_COSMOS=YES \
     -DUSE_BOOST=NO

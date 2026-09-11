@@ -6,10 +6,7 @@ ARCH=$(uname -m)
 
 echo "Installing package dependencies..."
 echo "---------------------------------------------------------------"
-pacman -Syu --noconfirm \
-    cmake      \
-    sdl2_mixer \
-    sdl2_ttf
+pacman -Syu --noconfirm cmake sdl2_mixer sdl2_ttf
 
 echo "Installing debloated packages..."
 echo "---------------------------------------------------------------"
@@ -23,11 +20,6 @@ git clone --recursive --depth 1 "$REPO" ./CommanderGenius
 echo "$VERSION" > ~/version
 
 mkdir -p ./AppDir/bin
-cd ./CommanderGenius
-cmake ./ -B build \
-    -DCMAKE_BUILD_TYPE=Release \
-    -DBUILD_COSMOS=YES \
-    -DUSE_BOOST=NO
-
+cmake -S ./CommanderGenius -B build -DCMAKE_BUILD_TYPE=Release -DBUILD_COSMOS=YES -DUSE_BOOST=NO
 cmake --build build -j$(nproc)
-mv -v build/src/CGeniusExe ../AppDir/bin
+mv -v build/src/CGeniusExe ./AppDir/bin
